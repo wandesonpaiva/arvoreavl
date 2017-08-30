@@ -39,13 +39,14 @@ public class Arvore {
 	  }
   }
 
-  // AJUSTAR FB NA INSERÇÃO
+
+  
+  // AJUSTAR FB NA INSERÇÃO -- método está bugado --> CORRIGIR 
   public void ajustarFbInsercao(No filho){
 	  
-	 
     No pai = filho.getPai();
     //int valor = esquerdo.valor;
-    
+    // se filho for filho esquerdo do pai
     if (pai != null && pai.getEsquerdo() != null && pai.getEsquerdo().getValor() == filho.getValor()){
       //System.out.println("Antigo FB de " + pai.getValor() + " é: " + pai.getFb());
     	pai.setFb(pai.getFb() + 1);
@@ -54,13 +55,16 @@ public class Arvore {
     		if (pai.getEsquerdo().getFb() < 0){
     			System.out.println("RotacaoDireitaDupla em " + pai.getValor());
     			rotacaoDireitaDupla(pai);
+    			return;
     		} else {
     			System.out.println("RotacaoDireitaSimples em " + pai.getValor());
     			rotacaoDireitaSimples(pai);
+    			return;
     		}
     	} else if(pai.getFb() != 0) {
     		ajustarFbInsercao(pai);
     	}
+   	// se filho for filho direito do pai
     } else if(pai != null && pai.getDireito() != null && pai.getDireito().getValor() == filho.getValor()){
       //System.out.println("Antigo FB de " + pai.getValor() + " é: " + pai.getFb());
     	pai.setFb(pai.getFb() - 1);
@@ -69,9 +73,11 @@ public class Arvore {
     		if (pai.getDireito().getFb() > 0){
     			System.out.println("RotacaoEsquerdaDupla em " + pai.getValor());
     			rotacaoEsquerdaDupla(pai);
+    			return;
     		} else{
     			System.out.println("RotacaoEsquerdaSimples em " + pai.getValor());
     			rotacaoEsquerdaSimples(pai);
+    			return;
     		}
     	} else if(pai.getFb() != 0){
     		ajustarFbInsercao(pai);  
@@ -82,6 +88,7 @@ public class Arvore {
   // ROTAÇÃO ESQUERDA SIMPLES
   public void rotacaoEsquerdaSimples(No pai){
 	  No filho = pai.getDireito();
+	  filho.setPai(pai.getPai());
 	  
 	  if (pai.getPai() != null){
 		  filho.setPai(pai.getPai());
@@ -100,16 +107,22 @@ public class Arvore {
 	  filho.setEsquerdo(pai);
 	  pai.setPai(filho);
 	  
-	  pai.setFb(pai.getFb() - 1 - Math.max(filho.getFb(), 0));
-	  filho.setFb( filho.getFb() - 1 + Math.min(pai.getFb(), 0));
+	  System.out.println("ROTAÇÃO: antigo fb do pai (" + pai.getValor() + ") é: " + pai.getFb());
+	  System.out.println("ROTAÇÃO: antigo fb do filho (" + filho.getValor() + ") é: " + filho.getFb());
+	  
+	  pai.setFb(pai.getFb() + 1 - Math.min(filho.getFb(), 0));
+	  filho.setFb(filho.getFb() + 1 + Math.max(pai.getFb(), 0));
+	  
+	  System.out.println("ROTAÇÃO: novo fb do pai (" + pai.getValor() + ") é: " + pai.getFb());
+	  System.out.println("ROTAÇÃO: novo fb do filho (" + filho.getValor() + ") é: " + filho.getFb());
   }
   
-  // ROTAÇÃO DIREITA SIMPLES	
+  // ROTAÇÃO DIREITA SIMPLES
   public void rotacaoDireitaSimples(No pai){
 	  No filho = pai.getEsquerdo();
+	  filho.setPai(pai.getPai());
 	  
 	  if (pai.getPai() != null){
-		  filho.setPai(pai.getPai());
 		  if (pai.getValor() < pai.getPai().getValor()){
 			  pai.getPai().setEsquerdo(filho);
 		  } else {
@@ -127,8 +140,10 @@ public class Arvore {
 	  
 	  System.out.println("ROTAÇÃO: antigo fb do pai (" + pai.getValor() + ") é: " + pai.getFb());
 	  System.out.println("ROTAÇÃO: antigo fb do filho (" + filho.getValor() + ") é: " + filho.getFb());
-	  pai.setFb(pai.getFb() + 1 - Math.min(filho.getFb(), 0));
-	  filho.setFb(filho.getFb() + 1 + Math.max(pai.getFb(), 0));
+	  
+	  pai.setFb(pai.getFb() - 1 - Math.max(filho.getFb(), 0));
+	  filho.setFb(filho.getFb() - 1 + Math.min(pai.getFb(), 0));
+	  
 	  System.out.println("ROTAÇÃO: novo fb do pai (" + pai.getValor() + ") é: " + pai.getFb());
 	  System.out.println("ROTAÇÃO: novo fb do filho (" + filho.getValor() + ") é: " + filho.getFb());
 	  
@@ -146,7 +161,7 @@ public class Arvore {
 	  rotacaoDireitaSimples(no.getPai());
   }
   
-  // REMOVER
+  // REMOVER ==============================================================
   public void remover(int valor){
       No aRemover = acharNo(raiz, valor);
       No pai = aRemover.getPai();
@@ -196,10 +211,15 @@ public class Arvore {
     		  }
     	  }
 		  /* Quarto caso: aRemover tem dois filhos */
+    	  if (aRemover.getEsquerdo() != null && aRemover.getDireito() != null){
+    		  
+    	  }
       } else {
     	  System.out.println("valor a remover não encontrado");
       }
   }
+  
+  // VERIFICAR BALANCEAMENTO
 
   // ACAHAR NÓ
   public No acharNo(No no, int valor){
@@ -212,6 +232,15 @@ public class Arvore {
 	  } else {
 		  return null;
 	  }
+  }
+  
+  // SUCESSOR
+  public No sucessor(No no){
+	  No sucessor = no.getDireito();
+	  while (sucessor.getEsquerdo() != null){
+		  sucessor = sucessor.getEsquerdo();  
+	  }
+	  return sucessor;
   }
 
   // IN ORDER

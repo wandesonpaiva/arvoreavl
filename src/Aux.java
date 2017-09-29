@@ -5,7 +5,7 @@ public class Aux{
     
     avl.inserir(15);
     avl.inserir(8);
-    /*avl.inserir(90);
+    avl.inserir(90);
     avl.inserir(44);
     avl.inserir(65);
     /*avl.inserir(22);
@@ -17,7 +17,7 @@ public class Aux{
     avl.inserir(19);*/
     
     
-    //avl.remover(3);
+    avl.remover(9);
     //avl.inserir(4);
     //avl.inserir(5);    
     System.out.println("--- in ordem ---");

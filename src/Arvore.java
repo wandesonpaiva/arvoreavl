@@ -196,7 +196,7 @@ public class Arvore {
           }
         }
       }
-		  /* Segundo caso: aRemover so tem o filho esquerdo */
+      /* Segundo caso: aRemover so tem o filho esquerdo */
       if (aRemover.getEsquerdo() != null && aRemover.getDireito() == null) {
         if (aRemover.getValor() == raiz.getValor()) {
           raiz = aRemover.getEsquerdo();
@@ -211,7 +211,7 @@ public class Arvore {
           }
         }
       }
-		  /* Terceiro caso: aRemover so tem o filho direito */
+      /* Terceiro caso: aRemover so tem o filho direito */
       if (aRemover.getEsquerdo() == null && aRemover.getDireito() != null) {
         if (aRemover.getValor() == raiz.getValor()) {
           raiz = aRemover.getEsquerdo();
@@ -226,7 +226,7 @@ public class Arvore {
           }
         }
       }
-		  /* Quarto caso: aRemover tem dois filhos */
+      /* Quarto caso: aRemover tem dois filhos */
       if (aRemover.getEsquerdo() != null && aRemover.getDireito() != null) {
         // remover sucessor, pegar chave dele e atribuir a aremover
         No sucessor = sucessor(aRemover);

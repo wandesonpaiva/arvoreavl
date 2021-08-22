@@ -10,15 +10,15 @@ public class Arvore {
     	raiz = no;
     } else {
     	No pai = acharPai(valor, raiz);
-		no.setPai(pai);
-		if (pai.getValor() > valor) {
-			System.out.println(valor + " inserido a esquerda de " + pai.getValor());
-			pai.setEsquerdo(no);
-		} else if(pai.getValor() < valor) {
-			System.out.println(valor + " inserido a direita de " + pai.getValor());
-			pai.setDireito(no);
-		}
-		ajustarFb(no.getValor(), pai, 1);
+      no.setPai(pai);
+      if (pai.getValor() > valor) {
+        System.out.println(valor + " inserido a esquerda de " + pai.getValor());
+        pai.setEsquerdo(no);
+      } else if(pai.getValor() < valor) {
+        System.out.println(valor + " inserido a direita de " + pai.getValor());
+        pai.setDireito(no);
+      }
+      ajustarFb(no.getValor(), pai, 1);
     }
   }
 

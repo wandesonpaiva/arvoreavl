@@ -239,17 +239,17 @@ public class Arvore {
     }
   }
 
-  // ACAHAR NÓ
+  // ACHAR NÓ
   public No acharNo(No no, int valor) {
-	  if(no.getValor() == valor) {
-		  return no;
-	  } else if(no.getValor() < valor && no.getDireito() != null) {
-		  return acharNo(no.getDireito(), valor);
-	  } else if(no.getValor() > valor && no.getEsquerdo() != null){
-		  return acharNo(no.getEsquerdo(), valor);
-	  } else {
-		  return null;
-	  }
+    if(no.getValor() == valor) {
+      return no;
+    } else if(no.getValor() < valor && no.getDireito() != null) {
+      return acharNo(no.getDireito(), valor);
+    } else if(no.getValor() > valor && no.getEsquerdo() != null){
+      return acharNo(no.getEsquerdo(), valor);
+    } else {
+      return null;
+    }
   }
   
   // SUCESSOR

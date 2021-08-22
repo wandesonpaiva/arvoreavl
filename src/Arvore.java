@@ -254,15 +254,15 @@ public class Arvore {
   
   // SUCESSOR
   public No sucessor(No no) {
-	  No sucessor = no.getDireito();
-	  while (sucessor.getEsquerdo() != null){
-		  sucessor = sucessor.getEsquerdo();  
-	  }
-	  return sucessor;
+    No sucessor = no.getDireito();
+    while (sucessor.getEsquerdo() != null){
+      sucessor = sucessor.getEsquerdo();  
+    }
+    return sucessor;
   }
 
   // IN ORDER
-  public void inOrder(No no){
+  public void inOrder(No no) {
     if (no.getEsquerdo() != null) {
       inOrder(no.getEsquerdo());
     }

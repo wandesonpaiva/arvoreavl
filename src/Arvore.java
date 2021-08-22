@@ -136,33 +136,33 @@ public class Arvore {
   
   // ROTAÇÃO DIREITA SIMPLES
   public No rotacaoDireitaSimples(No inicial) {
-	  No esquerdo = inicial.getEsquerdo();
-	  esquerdo.setPai(inicial.getPai());
-	  inicial.setEsquerdo(inicial.getDireito());
+    No esquerdo = inicial.getEsquerdo();
+    esquerdo.setPai(inicial.getPai());
+    inicial.setEsquerdo(inicial.getDireito());
+
+    if(inicial.getEsquerdo() != null) {
+      inicial.getEsquerdo().setPai(inicial);
+    }
+
+    esquerdo.setDireito(inicial);
+    inicial.setPai(esquerdo);
 	  
-	  if(inicial.getEsquerdo() != null) {
-		  inicial.getEsquerdo().setPai(inicial);
-	  }
-	  
-	  esquerdo.setDireito(inicial);
-	  inicial.setPai(esquerdo);
-	  
-	  if (esquerdo.getPai() != null) { 
-		  if (esquerdo.getPai().getDireito() == inicial) {
-			  esquerdo.getPai().setDireito(esquerdo);
-		  } 
-		  else if (esquerdo.getPai().getEsquerdo() == inicial) {
-			  esquerdo.getPai().setEsquerdo(esquerdo);
-		  }
-	  }
-	  
-	  if (inicial.getValor() == this.raiz.getValor()) {
-		  raiz = esquerdo;
-	  }
-	  
-	  inicial.setFb(inicial.getFb() - 1 - Math.max(esquerdo.getFb(), 0));
-	  esquerdo.setFb(esquerdo.getFb() - 1 + Math.min(inicial.getFb(), 0));
-	  return esquerdo;
+    if (esquerdo.getPai() != null) { 
+      if (esquerdo.getPai().getDireito() == inicial) {
+        esquerdo.getPai().setDireito(esquerdo);
+      } 
+      else if (esquerdo.getPai().getEsquerdo() == inicial) {
+        esquerdo.getPai().setEsquerdo(esquerdo);
+      }
+    }
+
+    if (inicial.getValor() == this.raiz.getValor()) {
+      raiz = esquerdo;
+    }
+
+    inicial.setFb(inicial.getFb() - 1 - Math.max(esquerdo.getFb(), 0));
+    esquerdo.setFb(esquerdo.getFb() - 1 + Math.min(inicial.getFb(), 0));
+    return esquerdo;
   }
   
   // ROTAÇÃO ESQUERDA DUPLA

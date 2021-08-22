@@ -167,8 +167,8 @@ public class Arvore {
   
   // ROTAÇÃO ESQUERDA DUPLA
   public No rotacaoEsquerdaDupla(No no) {
-	  rotacaoDireitaSimples(no.getDireito());
-	  return rotacaoEsquerdaSimples(no);
+    rotacaoDireitaSimples(no.getDireito());
+    return rotacaoEsquerdaSimples(no);
   }
 
   // ROTAÇÃO DIREITA DUPLA

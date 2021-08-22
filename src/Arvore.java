@@ -263,12 +263,12 @@ public class Arvore {
 
   // IN ORDER
   public void inOrder(No no){
-	  if (no.getEsquerdo() != null) {
-		  inOrder(no.getEsquerdo());
-	  }
-	  System.out.println(no.getValor() + " (" + no.getFb() + ")");
-	  if (no.getDireito() != null) {
-		  inOrder(no.getDireito());
-	  }
+    if (no.getEsquerdo() != null) {
+      inOrder(no.getEsquerdo());
+    }
+    System.out.println(no.getValor() + " (" + no.getFb() + ")");
+    if (no.getDireito() != null) {
+      inOrder(no.getDireito());
+    }
   }
 }

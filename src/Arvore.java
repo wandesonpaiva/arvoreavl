@@ -34,73 +34,73 @@ public class Arvore {
   }
 
   // flag =  1 => insercao
-	// flag = -1 => remoção
-	public void ajustarFb(int valor, No pai, int flag) {
-		if (pai != null) {
-			if(flag == 1) {
-				if (valor > pai.getValor()) {
-					pai.setFb(pai.getFb() - 1);
-					if (pai.getFb() < -1) {
-						if(pai.getDireito() != null && pai.getDireito().getFb() > 0) {
-							System.out.println("rotacao esquerda dupla em " + pai.getValor());
-							pai = rotacaoEsquerdaDupla(pai);
-						} else if(pai.getDireito() != null && pai.getDireito().getFb() <= 0) {
-							System.out.println("rotacao esquerda simples em " + pai.getValor());
-							pai = rotacaoEsquerdaSimples(pai);
-						}
-					}
-					if (pai.getPai() != null && pai.getFb() != 0) {
-						ajustarFb(pai.getValor(), pai.getPai(), flag);
-					}
-				} else if (valor < pai.getValor()) {
-					pai.setFb(pai.getFb() + 1);
-					if (pai.getFb() > 1) {
-						if(pai.getEsquerdo() != null && pai.getEsquerdo().getFb() < 0) {
-							System.out.println("rotacao direita dupla em " + pai.getValor());
-							pai = rotacaoDireitaDupla(pai);
-						} else if(pai.getEsquerdo() != null && pai.getEsquerdo().getFb() >= 0) {
-							System.out.println("Teste rotacao direita simples em " + pai.getValor() + "(" + pai.getFb() + ")" );
-							pai = rotacaoDireitaSimples(pai);
-						}
-					}
-					if (pai.getPai() != null && pai.getFb() != 0) {
-						ajustarFb(pai.getValor(), pai.getPai(), flag);
-					}
-				}
-			} else if(flag == -1) {
-				if (valor > pai.getValor()) {
-					pai.setFb(pai.getFb() + 1);
-					if (pai.getFb() > 1) {
-						if(pai.getEsquerdo() != null && pai.getEsquerdo().getFb() < 0) {
-							System.out.println("rotacao direita dupla em " + pai.getValor());
-							pai = rotacaoDireitaDupla(pai);
-						} else {
-							System.out.println("rotacao direita simples em " + pai.getValor());
-							pai = rotacaoDireitaSimples(pai);
-						}
-					}
-					if (pai.getPai() != null && pai.getFb() == 0) {
-						ajustarFb(pai.getValor(), pai.getPai(), flag);
-					}
-				} else {
-					pai.setFb(pai.getFb() - 1);
-					if (pai.getFb() < -1) {
-						if(pai.getDireito() != null && pai.getDireito().getFb() > 0) {
-							System.out.println("rotacao esquerda dupla em " + pai.getValor());
-							pai = rotacaoEsquerdaDupla(pai);
-						} else {
-							System.out.println("rotacao esquerda simples em " + pai.getValor());
-							pai = rotacaoEsquerdaSimples(pai);
-						}
-					}
-					if (pai.getPai() != null && pai.getFb() == 0) {
-						ajustarFb(pai.getValor(), pai.getPai(), flag);
-					}
-				}
-			}
-		}
-		System.out.println("No:" + pai.getValor() + "Fb: " + pai.getFb());
-	}
+  // flag = -1 => remoção
+  public void ajustarFb(int valor, No pai, int flag) {
+    if (pai != null) {
+      if(flag == 1) {
+        if (valor > pai.getValor()) {
+          pai.setFb(pai.getFb() - 1);
+          if (pai.getFb() < -1) {
+            if(pai.getDireito() != null && pai.getDireito().getFb() > 0) {
+              System.out.println("rotacao esquerda dupla em " + pai.getValor());
+              pai = rotacaoEsquerdaDupla(pai);
+            } else if(pai.getDireito() != null && pai.getDireito().getFb() <= 0) {
+              System.out.println("rotacao esquerda simples em " + pai.getValor());
+              pai = rotacaoEsquerdaSimples(pai);
+            }
+          }
+          if (pai.getPai() != null && pai.getFb() != 0) {
+            ajustarFb(pai.getValor(), pai.getPai(), flag);
+          }
+        } else if (valor < pai.getValor()) {
+          pai.setFb(pai.getFb() + 1);
+          if (pai.getFb() > 1) {
+            if(pai.getEsquerdo() != null && pai.getEsquerdo().getFb() < 0) {
+              System.out.println("rotacao direita dupla em " + pai.getValor());
+              pai = rotacaoDireitaDupla(pai);
+            } else if(pai.getEsquerdo() != null && pai.getEsquerdo().getFb() >= 0) {
+              System.out.println("Teste rotacao direita simples em " + pai.getValor() + "(" + pai.getFb() + ")" );
+              pai = rotacaoDireitaSimples(pai);
+            }
+          }
+          if (pai.getPai() != null && pai.getFb() != 0) {
+            ajustarFb(pai.getValor(), pai.getPai(), flag);
+          }
+        }
+      } else if(flag == -1) {
+        if (valor > pai.getValor()) {
+          pai.setFb(pai.getFb() + 1);
+          if (pai.getFb() > 1) {
+            if(pai.getEsquerdo() != null && pai.getEsquerdo().getFb() < 0) {
+              System.out.println("rotacao direita dupla em " + pai.getValor());
+              pai = rotacaoDireitaDupla(pai);
+            } else {
+              System.out.println("rotacao direita simples em " + pai.getValor());
+              pai = rotacaoDireitaSimples(pai);
+            }
+          }
+          if (pai.getPai() != null && pai.getFb() == 0) {
+            ajustarFb(pai.getValor(), pai.getPai(), flag);
+          }
+        } else {
+          pai.setFb(pai.getFb() - 1);
+          if (pai.getFb() < -1) {
+            if(pai.getDireito() != null && pai.getDireito().getFb() > 0) {
+              System.out.println("rotacao esquerda dupla em " + pai.getValor());
+              pai = rotacaoEsquerdaDupla(pai);
+            } else {
+              System.out.println("rotacao esquerda simples em " + pai.getValor());
+              pai = rotacaoEsquerdaSimples(pai);
+            }
+          }
+          if (pai.getPai() != null && pai.getFb() == 0) {
+            ajustarFb(pai.getValor(), pai.getPai(), flag);
+          }
+        }
+      }
+    }
+    System.out.println("No:" + pai.getValor() + "Fb: " + pai.getFb());
+  }
   
   // ROTAÇÃO ESQUERDA SIMPLES
   public No rotacaoEsquerdaSimples(No inicial) {
